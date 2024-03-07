@@ -1,8 +1,13 @@
 "use client";
 
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect, useRef, FormEvent } from "react";
 
 export default function Form() {
+  let hostname = "";
+  if (typeof window !== "undefined") {
+    hostname = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+  }
+
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,24 +19,23 @@ export default function Form() {
   const [isClient, setIsClient] = useState(false); // For password managers
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/supervisors")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        // const results = data.results;
+    if (typeof window !== "undefined") {
+      fetch(`${hostname}/api/supervisors`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setSupervisorData(data);
+        })
+        .catch((error: unknown) => {
+          if (error instanceof Error) {
+            console.error(error);
+          }
+        });
 
-        // console.log(data);
-        setSupervisorData(data);
-      })
-      .catch((error: unknown) => {
-        if (error instanceof Error) {
-          console.error(error);
-        }
-      });
-
-    setIsClient(true);
-  }, []);
+      setIsClient(true);
+    }
+  }, [hostname]);
 
   if (!isClient) return null;
 
@@ -68,16 +72,22 @@ export default function Form() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const postData = JSON.stringify([fName, lName, email, phone, supervisor]);
+    const postData = JSON.stringify({
+      firstName: fName,
+      lastName: lName,
+      email: email,
+      phone: phone,
+      supervisor: supervisor,
+    });
     console.log(`handleSubmit captured: ${postData}`);
 
-    fetch("http://localhost:3000/api/submit", {
+    fetch(`${hostname}/api/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: postData,
     }).then(() => {
       console.log(
-        "Form data sent to http://localhost:3000/api/submit! (Check your terminal)"
+        `Form data sent to ${hostname}/api/submit! (Check your terminal)`
       );
     });
   };

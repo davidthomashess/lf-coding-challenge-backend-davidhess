@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Getting Started
 
-## Getting Started
+Select the "<> Code" button and select the "Codespaces" tab.
 
-First, run the development server:
+Click the button "Create codespace on ".
+
+Run 'npm install' in the Codespaces terminal:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Click the "Open in Browser" popup to see the page. (Visit localhost:3000 if running locally on your workstation)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+_You can open the Dev Tools console to verify that the submit function captured your input information._
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+_You can also verify your submitted data successful in the terminal where you executed 'npm run dev'_
 
-## Learn More
+# Postman Plugin
 
-To learn more about Next.js, take a look at the following resources:
+You can test GET and POST requests using the Postman Plugin provided in the GitHub Codespace.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Click the plugin and sign in (Note: You may need to use Postman's authorization token to sign in with GitHub Codespace)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Click on "New HTTP Request" and you should see the Postman GUI in one of your Codespace tabs.
 
-## Deploy on Vercel
+## Postman GET request (GET /api/supervisors)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ensure "GET" is selected for your Send request.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Insert the following URL: http://localhost:3000/api/supervisors
+
+Click send and view your results in the "Body" tab.
+
+## Postman POST request (POST /api/submit)
+
+Ensure "POST" is selected for your Send request.
+
+Insert the following URL: http://localhost:3000/api/submit
+
+Select the "Body" under the URL input.
+
+Select the "raw" tab and insert the following:
+
+```
+{
+    "firstName":"First",
+    "lastName":"Last",
+    "email":"FLast@example.com",
+    "phone":"(###) ###-####",
+    "supervisor":"h - Hoppe, Lisa"
+}
+```
+
+Click send and view your results in the "Body" tab and within the Terminal where you executed "npm run dev".
+
+## About the Project
+
+The application is dockerized with Visual Studio Code Dev Containers.
+
+This web application was built with the Next.js React framework, TypeScript for type safety, and Tailwind CSS for styling elements.
