@@ -30,8 +30,20 @@ export async function POST(request: Request) {
         ? throwParamEx(body)
         : supervisor === ""
         ? throwParamEx(body)
+        : supervisor === "select"
+        ? throwParamEx(body)
         : body
     );
+
+    fetch("https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: body,
+    }).then(() => {
+      console.log(
+        "Form data sent to https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/submit!"
+      );
+    });
 
     return new NextResponse(body, { status: 200 });
   } catch (error) {
