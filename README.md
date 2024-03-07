@@ -64,4 +64,4 @@ Click send and view your results in the "Body" tab and within the Terminal where
 
 The application is dockerized with Visual Studio Code Dev Containers.
 
-This web application was built with the Next.js React framework, TypeScript for type safety, and Tailwind CSS for styling elements.
+This web application was built with the Next.js React framework, TypeScript for type safety, Postman Plugin to test fetch requests, and Tailwind CSS for styling elements.
