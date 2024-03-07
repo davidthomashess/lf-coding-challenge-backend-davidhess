@@ -68,7 +68,13 @@ export default function Form() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const postData = JSON.stringify([fName, lName, email, phone, supervisor]);
+    const postData = JSON.stringify({
+      firstName: fName,
+      lastName: lName,
+      email: email,
+      phone: phone,
+      supervisor: supervisor,
+    });
     console.log(`handleSubmit captured: ${postData}`);
 
     fetch("http://localhost:3000/api/submit", {
