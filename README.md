@@ -18,6 +18,8 @@ npm run dev
 
 Click the "Open in Browser" popup to see the page. (Visit localhost:3000 if running locally on your workstation)
 
+Enter your data and hit submit. Be sure to refresh the page before each additional form you submit.
+
 _You can open the Dev Tools console to verify that the submit function captured your input information._
 
 _You can also verify your submitted data successful in the terminal where you executed 'npm run dev'_
@@ -60,7 +62,7 @@ Select the "raw" tab and insert the following:
 
 Click send and view your results in the "Body" tab and within the Terminal where you executed "npm run dev".
 
-## About the Project
+# About the Project
 
 The application is dockerized with Visual Studio Code Dev Containers.
 
